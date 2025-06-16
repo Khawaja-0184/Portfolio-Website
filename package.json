@@ -2,11 +2,15 @@
   "name": "assigniment-3",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:css": "stylelint '**/*.css'"
+  },
+  "devDependencies": {
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
   },
   "author": "",
   "license": "ISC",
   "description": ""
+  
 }
