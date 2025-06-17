@@ -3,32 +3,32 @@ on:
   push:
     branches:
       - develop
-
 jobs:
   build-job-develop:
-    runs-on: ubuntu-latest
-    steps:
+     runs-on: ubuntu-latest
+     steps:
       - name: Checkout Repository On the Runner
-        uses: actions/checkout@v4
-      - name: Build Static Website With Parcel
+        uses: action/checkout@v4
+      - name: Build Static Website With Parcel  
         run: npx parcel build "./src/index.js" --dist-dir "./dist" --public-url "./"
-      - name: Upload Build Artifacts
+      - name: Upload Build Artifacts 
         uses: actions/upload-pages-artifacts@v3
         with:
           path: "./dist"
           name: "build-artifact-develop"
 
-  deploy-job-develop:
-    needs: build-job-develop
+
+  deploy-job-develop:      
+    needs: "build-job-develop"
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+       name: "github-pages"
     permissions:
       pages: write
-      id-token: write
+      id-token: write   
     steps:
       - name: Deploy Website on HH-Pages
         uses: actions/deploy-pages@v4
-        with:
+        with: 
           artifact_name: "build-artifact-develop"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: "${{github.token}}"
